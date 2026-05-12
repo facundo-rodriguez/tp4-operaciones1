@@ -1,0 +1,45 @@
+================================================
+ REPORTE DE DIAGNÓSTICO DE RED — 2026-05-11_23-54-03
+================================================
+
+--- 1. INTERFACES DE RED ---
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+    inet 10.255.255.254/32 brd 10.255.255.254 scope global lo
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 172.18.159.193/20 brd 172.18.159.255 scope global eth0
+
+--- 2. TABLA DE RUTAS ---
+default via 172.18.144.1 dev eth0 proto kernel 
+172.18.144.0/20 dev eth0 proto kernel scope link src 172.18.159.193 
+
+--- 3. CONFIGURACIÓN DNS ---
+nameserver 10.255.255.254
+search hgu_lan
+
+--- 4. CONECTIVIDAD (PING) ---
+ [OK] google.com — alcanzable (latencia avg: 8.203ms)
+ [OK] 8.8.8.8 — alcanzable (latencia avg: 4.773ms)
+ [OK] github.com — alcanzable (latencia avg: 41.885ms)
+
+--- 5. RESOLUCIÓN DNS ---
+ [FAIL] google.com — no se pudo resolver
+ [OK] 8.8.8.8 — es una IP, no requiere DNS
+ [FAIL] github.com — no se pudo resolver
+
+--- 6. SERVICIOS HTTP ---
+ [OK] https://google.com → HTTP 301
+ [OK] https://github.com → HTTP 200
+
+--- 7. PUERTOS LOCALES EN ESCUCHA ---
+LISTEN 0      511         127.0.0.1:33897      0.0.0.0:*    users:(("node",pid=939,fd=22))  
+LISTEN 0      4096    127.0.0.53%lo:53         0.0.0.0:*                                    
+LISTEN 0      511         127.0.0.1:37095      0.0.0.0:*    users:(("node",pid=56443,fd=47))
+LISTEN 0      4096       127.0.0.54:53         0.0.0.0:*                                    
+LISTEN 0      1000   10.255.255.254:53         0.0.0.0:*                                    
+
+------------------------------------------------
+RESUMEN: 6 OK | 0
+0 WARN | 2 FAIL
+Reporte guardado en: /home/facundo/operaciones1/devops-TP04/reports/red_2026-05-11_23-54-03.txt
+------------------------------------------------
